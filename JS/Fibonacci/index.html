@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Miguel Angel Garcia Cambron" />
+    <meta name="copyright" content="Propietario del copyright" />   
+    <meta name="description" content="Codigo para facilitar el aprendizaje y comprension de funcion secuencial Fibonacci, para mayor informes, contactar al correo siguiente: ingmiguelangelgc@gmail.com"/>
+
+    <title>Secuencia de Fibonacci</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Secuencia de Fibonacci</h1>
+    <p>Ingresa la cantidad de números que deseas generar:</p>
+    <input type="number" id="numInput" min="1" placeholder="Ejemplo: 10">
+    <button onclick="generateFibonacci()">Generar</button>
+
+    <div id="result"></div>
+
+    <script>
+        function generateFibonacci() {
+            // Obtener el valor ingresado por el usuario
+            const num = parseInt(document.getElementById('numInput').value);
+            const resultDiv = document.getElementById('result');
+
+            // Validar el input
+            if (isNaN(num) || num <= 0) {
+                resultDiv.innerHTML = "<p style='color: red;'>Por favor, ingresa un número válido.</p>";
+                return;
+            }
+
+            // Generar la secuencia de Fibonacci
+            let fibonacci = [0, 1];
+            for (let i = 2; i < num; i++) {
+                fibonacci.push(fibonacci[i - 1] + fibonacci[i - 2]);
+            }
+
+            // Mostrar el resultado en el HTML
+            resultDiv.innerHTML = `
+                <h2>Resultado:</h2>
+                <p>${fibonacci.slice(0, num).join(', ')}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
